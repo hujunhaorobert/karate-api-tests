@@ -24,10 +24,10 @@ The project is structured as follows:
    │     │  │  └─ WeatherRunner.java
    │     │  └─ WeatherTest.java
    │     ├─ metadata
-   │     │   ├─ cities_all.csv
-   │     │   └─ states.csv
+   │     │  ├─ cities_all.csv
+   │     │  └─ states.csv
    │     │─ schemas
-   │     │      └─  weatherDataSchema.json
+   │     │  └─ weatherDataSchema.json
    │     ├─ utils
    │     │  ├─ query.feature
    │     │  └─ utils.js
@@ -43,7 +43,11 @@ The project is structured as follows:
 ## How to run the test
     1. Go to the project root folder: cd karate-api-tests
     2. Run cli: mvn clean test
-    3. API Tests has been set to run in parallel with workers num=5, it could be increased, e.g. to 20 or even bigger to speed up the testing. Bear in mind that if increasing the parallel worker number, it will increase API request concurrency and the load to server, as a consequence, the API response time has been seen longer than lower concurrency.Tipically Get weather data will take ~500ms if n=1; when set n=10, response time will be >2000ms, which causes API responseTime assertion failure, as maxResponseTimeinMs is set to 2000ms in karate-config.js.
+    3. API Tests has been set to run in parallel with workers num=5, it could be increased, e.g. to 20 or even bigger
+    to speed up the testing. 
+    4. Bear in mind that if increasing the parallel worker number, it will increase API request concurrency/load to server, as a consequence, the API response time has been seen longer than lower concurrency. Tipically Get weather
+    data will take ~500ms if n=1; when set n=10, response time will be >2000ms, which causes API responseTime 
+    assertion failure, as maxResponseTimeinMs is set to 2000ms in karate-config.js.
 
 ## How to open Cucumber HTML report
     Under target > cucumber-html-report, find report file overview-features.html, and open it in any browser
@@ -64,4 +68,6 @@ The project is structured as follows:
          $.data[0].lat | not a number (STRING:STRING)
         '42.43603'
         '#number'
+        ![Screenshot 2023-08-28 at 9 31 52 am](https://github.com/hujunhaorobert/karate-api-tests/assets/10079887/85b62739-c4e7-4c0f-95c8-a332ae9d0691)
     2. GET http://api.weatherbit.io/v2.0/current?cities=NaN&key=<apiKey> returns RC=500, ideally if GET API cannot retrieve/find the weather data by cityID, it would be better to return RC=404 (Not found) or 400 (Bad request), rather than 500
+        ![Screenshot 2023-08-28 at 9 35 18 am](https://github.com/hujunhaorobert/karate-api-tests/assets/10079887/5795bac4-33d3-439d-994f-bec23c8c6781)
