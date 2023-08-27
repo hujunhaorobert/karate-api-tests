@@ -60,8 +60,13 @@ The project is structured as follows:
         4. Feature Background set up, these seems to be common steps, so it could be put into a common feature file. Similarly, some common validation steps, e.g. validate response header, etc, could be refactored into a common feature file as well.
     
     For future development:
-        5. Given time is limited, the AC4 job is on the half way to finish, basically the design solution is similar to AC3, and the high level implementation steps are documented at the Feature file header part, which need time to be fully tested/implemented.
-        6. CI/CD could be enabled, e.g. CircleCI, add slack and SMS notification(Please refer to my GitHub project e.g. https://github.com/hujunhaorobert/playwright-automation)
+        1. Given time is limited, the AC4 job is on the half way to finish, basically the design solution is similar to AC3, and the high level implementation steps are documented at the Feature file header part, which need time to be fully tested/implemented. See below steps:
+           1. Import states.csv as JSON array/table, parse the table to get all US/state_code
+           2. Import cities_all.csv as JSON array/table, parse the table to get city IDs in each state/US
+           3. GET a group of observations by cities' ID list => /current?cities={cities}
+           4. Query the weather result list, get the lowest temp value of the city in a state/US
+           5. Compare the 51 states's lowest temp to get the lowest city name, state name.
+        2. CI/CD could be enabled, e.g. CircleCI, add slack and SMS notification(Please refer to my GitHub project e.g. https://github.com/hujunhaorobert/playwright-automation)
 
 ## Bug list to be reported and triaged with DEV team
     1. API Schema validation is failed for lat/lon, becauses api.weatherbit.io/v2.0/current?cities=<cityIDs> response lat/lon as string(X), while in other endpoints, it respones as number(expected), better to keep the data type consistent. Detail failure as below:
