@@ -52,19 +52,18 @@ The project is structured as follows:
    
 ## Roadmap for future development and enhancement
     To be improved:
-        1. weather api key is a sensitive data, for quick and easy demo purpose, it has been put in karate-conf.js, while best practice is to upload the api key to AWS Secrete Manager, and fetch from it when needed.  An alternative could be put to .env.
-        2. api key log should be masked as **** , to avoid secret leakage in Cucumber HTML report. Currently there will be api key marking solution by Karate Framework on roadmap, but not fully ready yet. 
-        3. Feature Background set up, could be put into a common feature file. 
-        4. Could utilize or import 3rd party Database/Table management software or tools, so that DB/Table operation will be more efficient.
-        5. Some common validation steps, e.g. validate response header, etc, could be refactored to a common feature file
+        1. Weather api key is a sensitive data, for quick demo purpose, it has been stored in karate-conf.js, while the best practice would be upload the api key to cloud, e.g. AWS Secrete Manager, and retrieve it when needed.  An alternative could be put to .env.
+        2. API key in log should be masked as ****, to avoid secret leakage in log, e.g. Cucumber HTML report. Currently there is api key marsking solution by Karate Framework, but not fully ready yet. Please refer to link:https://github.com/karatelabs/karate#log-masking
+        3. Could utilize or import 3rd party Database/Table management package or tools, and import the csv table meta data into DB, so that DB/Table query will be easier and more efficient.
+        4. Feature Background set up, these seems to be common steps, so it could be put into a common feature file. Some common validation steps, e.g. validate response header, etc, could be refactored to a common feature file as well.
     
     For future development:
-        1. Given time is limited, the AC4 job is on the half way to finish, basically the design solution is similar as AC3, and the details is documented at the Feature header part, which need time to be fully tested/implemented.
-        2. CI/CD could be enabled, e.g. CircleCI, add slack and SMS notification(e.g. https://github.com/hujunhaorobert/playwright-automation)
+        1. Given time is limited, the AC4 job is on the half way to finish, basically the design solution is similar as AC3, and the high level implementation steps are documented at the Feature file header part, which need time to be fully tested/implemented.
+        8. CI/CD could be enabled, e.g. CircleCI, add slack and SMS notification(e.g. https://github.com/hujunhaorobert/playwright-automation)
 
 ## Bug list to be reported and triaged with DEV team
-    1. Schema validation failed for lat/lon, becauses api.weatherbit.io/v2.0/current?cities=<cityIDs> response lat/lon as string(X), in other endpoints, it respones as number(as expected), we need keep the data type agligned. Detail failure as below:
+    1. Schema validation failed for lat/lon, becauses api.weatherbit.io/v2.0/current?cities=<cityIDs> response lat/lon as string(X), in other endpoints, it respones as number(as expected), better to keep the data type consistent. Detail failure as below:
          $.data[0].lat | not a number (STRING:STRING)
         '42.43603'
         '#number'
-    2. GET http://api.weatherbit.io/v2.0/current?cities=NaN&key=<apiKey> returns 500, ideally if GET API cannot retrieve the weather data by cityID, it would be better to return RC=400, rather than 500
+    2. GET http://api.weatherbit.io/v2.0/current?cities=NaN&key=<apiKey> returns 500, ideally if GET API cannot retrieve/find the weather data by cityID, it would be better to return RC=400, rather than 500
