@@ -21,7 +21,7 @@ class WeatherTest {
     void testParallel() {
         Results results = Runner.path("classpath:features/*")
                 .outputCucumberJson(true)
-                .parallel(10);
+                .parallel(5);
         generateReports(results.getReportDir());
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
