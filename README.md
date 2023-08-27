@@ -59,7 +59,7 @@ The project is structured as follows:
     
     For future development:
         1. Given time is limited, the AC4 job is on the half way to finish, basically the design solution is similar as AC3, and the high level implementation steps are documented at the Feature file header part, which need time to be fully tested/implemented.
-        8. CI/CD could be enabled, e.g. CircleCI, add slack and SMS notification(e.g. https://github.com/hujunhaorobert/playwright-automation)
+        2. CI/CD could be enabled, e.g. CircleCI, add slack and SMS notification(e.g. https://github.com/hujunhaorobert/playwright-automation)
 
 ## Bug list to be reported and triaged with DEV team
     1. Schema validation failed for lat/lon, becauses api.weatherbit.io/v2.0/current?cities=<cityIDs> response lat/lon as string(X), in other endpoints, it respones as number(as expected), better to keep the data type consistent. Detail failure as below:
