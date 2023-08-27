@@ -11,6 +11,7 @@ The project is structured as follows:
 ├─ .gitignore
 ├─ LICENSE
 ├─ README.md
+├─ pom.xml
 └─ src
    ├─ test
    │  └─ java
