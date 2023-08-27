@@ -43,7 +43,9 @@ The project is structured as follows:
 ## How to run the test
     1. Go to the project root folder: cd karate-api-tests
     2. Run cli: mvn clean test
-    3. API Tests has been set to run in parallel with workers num=10, could be increased, e.g. to 20 or even bigger to speed up the testing. 
+    3. API Tests has been set to run in parallel with workers num=10, could be increased, e.g. to 20 or even bigger to speed up the testing.
+    4. Bear in mind that if increasing the parallel worker number, it will increase API concurrency and the load to server, as a consequence, the API response time will be longer than usual.
+       Tipically it will be 500ms if n=1; when set n=10, response time will be >2000ms, which causes responseTime assertion failure, as maxResponseTimeinMs is set to 2000ms in karate-config.js.
 
 ## How to open Cucumber HTML report
     Under target > cucumber-html-report, open file overview-features.html in any browser
